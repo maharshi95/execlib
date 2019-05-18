@@ -9,14 +9,20 @@ filename = sys.argv[1]
 
 input_from_file = False
 
-input_file = '~/Documents/CompetitiveProgramming/input.txt'
+default_input_file = 'input.txt'
+fallback_input_file = '~/Documents/CompetitiveProgramming/input.txt'
+
+if os.path.isfile(default_input_file):
+    input_file = default_input_file
+else:
+    input_file = fallback_input_file
 
 if len(sys.argv) >= 3:
     filename, flag = sys.argv[1:3]
-    if len(sys.argv) >= 4:
-        input_file = sys.argv[3]
     if flag == '-i':
         input_from_file = True
+    if len(sys.argv) >= 4:
+        input_file = sys.argv[3]
 
 if '.' in filename:
     i = filename.rindex('.')
